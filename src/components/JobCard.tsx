@@ -1,5 +1,6 @@
 import React from 'react'
-import { FiMapPin, FiClock, FiBriefcase, FiDollarSign } from 'react-icons/fi';
+import { FiMapPin, FiClock, FiBriefcase } from 'react-icons/fi';
+import { FaNairaSign } from "react-icons/fa6"
 
 interface JobCardProps {
     title: string;
@@ -12,11 +13,10 @@ interface JobCardProps {
     companyLogo?: string; // New optional field
 }
 
-const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, description, posted, salary = "$50k - $80k", }: JobCardProps) => {
+const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, description, posted, salary = "₦50k - ₦80k", }: JobCardProps) => {
   return (
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100 p-6">
       <div className="flex items-start gap-4">
-        {/* Company Logo */}
         <div className="w-16 h-16 rounded-lg bg-gray-50 flex-shrink-0 overflow-hidden">
           {/* <img 
             src={companyLogo} 
@@ -26,7 +26,6 @@ const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, descr
         </div>
 
         <div className="flex-1">
-          {/* Header Section */}
           <div className="flex justify-between items-start mb-3">
             <div>
               <h3 className="text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors">
@@ -39,7 +38,6 @@ const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, descr
             </button>
           </div>
 
-          {/* Job Details */}
           <div className="grid grid-cols-2 gap-3 mb-4">
             <div className="flex items-center text-gray-600">
               <FiMapPin className="w-4 h-4 mr-2" />
@@ -50,7 +48,7 @@ const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, descr
               <span className="text-sm">{tags[0]}</span>
             </div>
             <div className="flex items-center text-gray-600">
-              <FiDollarSign className="w-4 h-4 mr-2" />
+              <FaNairaSign className="w-4 h-4 mr-2" />
               <span className="text-sm">{salary}</span>
             </div>
             <div className="flex items-center text-gray-600">
@@ -59,10 +57,8 @@ const JobCard: React.FC<JobCardProps> = ({ title, company, location, tags, descr
             </div>
           </div>
 
-          {/* Description */}
           <p className="text-gray-600 text-sm mb-4">{description}</p>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2">
             {tags.map((tag, index) => (
               <span

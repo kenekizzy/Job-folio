@@ -7,7 +7,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-gray-900">Jobelia</h3>
+            <h3 className="text-xl font-bold text-green-600">SIPS</h3>
             <p className="text-gray-600 text-sm">
               Connecting talented professionals with their dream careers worldwide.
             </p>
@@ -66,14 +66,7 @@ const Footer = () => {
             <p className="text-gray-500 text-sm">
               © {new Date().getFullYear()} Bube Jobs. All rights reserved.
             </p>
-            {/* <div className="mt-4 md:mt-0">
-              <select className="bg-gray-50 border border-gray-200 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
-                <option>English</option>
-                <option>Spanish</option>
-                <option>French</option>
-                <option>German</option>
-              </select>
-            </div> */}
+            
           </div>
         </div>
       </div>

@@ -1,50 +1,46 @@
 'use client';
 
-import { useState }  from 'react'
-import Modal from './Modal'
-import { LoginForm, SignUpForm } from './auth/AuthForm';
+import Link from "next/link";
+import { useAuth } from "@/context/AuthContext";
 const Header = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const [isSignUpOpen, setIsSignUpOpen] = useState(false);
+  const { user, logout, isAuthenticated } = useAuth();
+
+  const handleLogout = async () => {
+    try {
+        await logout();
+    } catch (error) {
+        console.error('Logout failed:', error);
+    }
+};
 
   return (
     <header className="flex justify-between items-center px-6 py-4 bg-white shadow">
-        <div className="text-2xl font-bold text-green-600">Jobelia</div>
+        <Link href="/" className="text-2xl font-bold text-green-600">SIPS</Link>
         <nav className="flex space-x-6 text-gray-600 font-medium">
-        <a className="text-green-600 border-b-2 border-green-600" href="#">Find Jobs</a>
-        <a href="#">Find Talent</a>
-        <a href="#">Upload Job</a>
-        </nav>
+                <Link href="/" className="text-green-600 border-b-2 border-green-600">
+                    Find Jobs
+                </Link>
+                <Link href="/talent" className="hover:text-green-600">
+                    Find Talent
+                </Link>
+                {isAuthenticated && (
+                    <Link href="/dashboard/post-job" className="hover:text-green-600">
+                        Upload Job
+                    </Link>
+                )}
+          </nav>
         <div className="flex items-center space-x-4">
-        <button
-          onClick={() => setIsLoginOpen(true)}
+        <Link href="/login"
           className="text-gray-600 hover:text-green-600"
         >
           Login
-        </button>
-        <button
-          onClick={() => setIsSignUpOpen(true)}
-          className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
+        </Link>
+        <Link href="/signup"
+          className="text-gray-600 hover:text-green-600"
         >
           Sign Up
-        </button>
+        </Link>
       </div>
-
-      <Modal
-        isOpen={isLoginOpen}
-        onClose={() => setIsLoginOpen(false)}
-        title="Login"
-      >
-        <LoginForm />
-      </Modal>
-
-      <Modal
-        isOpen={isSignUpOpen}
-        onClose={() => setIsSignUpOpen(false)}
-        title="Create Account"
-      >
-        <SignUpForm />
-      </Modal>
     </header>
   )
 }
