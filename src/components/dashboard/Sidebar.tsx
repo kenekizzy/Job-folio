@@ -2,16 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-    FiHome, 
-    FiBriefcase, 
-    FiUsers, 
-    FiMessageSquare, 
-    FiBookmark, 
-    FiSettings, 
-    FiHelpCircle,
-    FiBell
-  } from 'react-icons/fi';
 
 interface SidebarItem {
     name: string;
