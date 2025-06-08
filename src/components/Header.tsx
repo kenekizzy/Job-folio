@@ -18,11 +18,13 @@ const Header = () => {
         <Link href="/" className="text-2xl font-bold text-green-600">SIPS</Link>
         <nav className="flex space-x-6 text-gray-600 font-medium">
                 <Link href="/" className="text-green-600 border-b-2 border-green-600">
-                    Find Jobs
+                    Find Companies
                 </Link>
                 <Link href="/talent" className="hover:text-green-600">
                     Find Talent
                 </Link>
+                <Link href="/about" className="hover:text-green-600">
+                About Us</Link>
                 {isAuthenticated && (
                     <Link href="/dashboard/post-job" className="hover:text-green-600">
                         Upload Job
@@ -30,7 +32,8 @@ const Header = () => {
                 )}
           </nav>
         <div className="flex items-center space-x-4">
-        <Link href="/login"
+        {isAuthenticated ? (<>
+          <Link href="/login"
           className="text-gray-600 hover:text-green-600"
         >
           Login
@@ -40,6 +43,11 @@ const Header = () => {
         >
           Sign Up
         </Link>
+        </>) : (
+          <button onClick={handleLogout} className="">
+            Log Out
+          </button>
+        )}
       </div>
     </header>
   )

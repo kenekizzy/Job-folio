@@ -1,102 +1,28 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JobCard from "@/components/JobCard";
-import SearchBar from "@/components/SearchBar";
 
 
 export default function Home() {
   const jobs = [
     {
-      title: "Software Engineering Intern",
-      company: "Andela",
-      location: "Lagos, Nigeria",
-      tags: ["Internship", "Remote-friendly"],
-      description: "Assist in building scalable web applications with mentorship from senior engineers.",
-      posted: "10 mins ago",
-      logo: "/logos/andela.png"
+      state: "Lagos",
+      city: "Oshodi",
+      course: "Electrical/Electronics & Telecommunications Engineering",
+      companyName: "Nigerian Electricity Management Services Agency",
+      address: "Along Agege Motor Road, Alasia Bus Stop, Before Bolade Bus Stop",
+      courseGroup: "Engineering"
     },
     {
-      title: "Product Design Intern",
-      company: "Paystack",
-      location: "Lagos, Nigeria",
-      tags: ["Internship"],
-      description: "Support the design team in creating seamless user experiences for merchants.",
-      posted: "30 mins ago",
-      logo: "/logos/paystack.png"
-    },
-    {
-      title: "Marketing Intern",
-      company: "Flutterwave",
-      location: "Lekki, Nigeria",
-      tags: ["Internship"],
-      description: "Work with the growth team to execute brand campaigns and outreach programs.",
-      posted: "1 hour ago",
-      logo: "/logos/flutterwave.png"
-    },
-    {
-      title: "Data Analyst Intern",
-      company: "Carbon",
-      location: "Remote - Nigeria",
-      tags: ["Internship", "Remote"],
-      description: "Assist in preparing business insights and dashboards for decision-making.",
-      posted: "Today",
-      logo: "/logos/carbon.png"
-    },
-    {
-      title: "UI/UX Intern",
-      company: "Kuda Bank",
-      location: "Yaba, Lagos",
-      tags: ["Internship"],
-      description: "Contribute to UI designs and usability testing for mobile banking products.",
-      posted: "2 hours ago",
-      logo: "/logos/kuda.png"
-    },
-    {
-      title: "Customer Success Intern",
-      company: "Mono",
-      location: "Ikeja, Lagos",
-      tags: ["Internship"],
-      description: "Support customers by resolving product queries and documenting feedback.",
-      posted: "Yesterday",
-      logo: "/logos/mono.png"
-    },
-    {
-      title: "Frontend Developer Intern",
-      company: "TeamApt",
-      location: "Victoria Island, Lagos",
-      tags: ["Internship"],
-      description: "Assist with the development of web user interfaces using React and Tailwind.",
-      posted: "2 days ago",
-      logo: "/logos/teamapt.png"
-    },
-    {
-      title: "Cybersecurity Intern",
-      company: "Interswitch",
-      location: "Lagos, Nigeria",
-      tags: ["Internship"],
-      description: "Learn to monitor and assess system security across platforms.",
-      posted: "3 days ago",
-      logo: "/logos/interswitch.png"
-    },
-    {
-      title: "Operations Intern",
-      company: "Trove Finance",
-      location: "Remote - Nigeria",
-      tags: ["Internship", "Remote"],
-      description: "Support daily operations and documentation of the investment platform.",
-      posted: "4 days ago",
-      logo: "/logos/trove.png"
-    },
-    {
-      title: "QA Intern",
-      company: "BuyCoins",
-      location: "Lagos, Nigeria",
-      tags: ["Internship"],
-      description: "Test application flows, write bug reports and assist in automating test cases.",
-      posted: "5 days ago",
-      logo: "/logos/buycoins.png"
+      state: "Lagos",
+      city: "Marina",
+      course: "Electrical/Electronics & Telecommunications Engineering",
+      companyName: "Nigerian Port Authority (NPA)",
+      address: "26/28 Marina, Lagos, Nigeria",
+      courseGroup: "Engineering"
     }
   ];
+ 
   return (
     <main className="bg-gradient-to-b from-gray-50 to-gray-100 min-h-screen">
     <Header />
@@ -108,10 +34,6 @@ export default function Home() {
         <p className="text-xl text-gray-600">
           Discover opportunities that match your skills and aspirations
         </p>
-      </div>
-      
-      <div className="mb-12">
-        <SearchBar />
       </div>
 
       <div className="space-y-6">
