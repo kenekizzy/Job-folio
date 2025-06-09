@@ -1,15 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 import { FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
 import { FaGoogle, FaLinkedin } from "react-icons/fa";
 
 const Login = () => {
+    const { login } = useAuth();
+    const router = useRouter();
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -22,12 +27,12 @@ const Login = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError('');
         try {
-
-            console.log('Login attempted:', formData);
-            
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await login(formData.email, formData.password);
+            router.push('/dashboard');
         } catch (error) {
+            setError('Invalid email or password');
             console.error('Login error:', error);
         } finally {
             setLoading(false);
@@ -48,6 +53,12 @@ const Login = () => {
                         <h1 className="text-3xl font-bold text-white mb-4">Welcome Back</h1>
                         <p className="text-white/80">Sign in to continue to your account</p>
                     </div>
+
+                    {error && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+                    {error}
+                </div>
+            )}
                     
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="relative">

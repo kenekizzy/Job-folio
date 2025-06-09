@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
+import { useEffect } from "react";
 const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    console.log("User", user)
+  })
 
   const handleLogout = async () => {
     try {
@@ -32,7 +37,12 @@ const Header = () => {
                 )}
           </nav>
         <div className="flex items-center space-x-4">
-        {isAuthenticated ? (<>
+        {isAuthenticated ? (
+          <button onClick={handleLogout} className="">
+          Log Out
+        </button>
+        ) : (
+          <>
           <Link href="/login"
           className="text-gray-600 hover:text-green-600"
         >
@@ -43,10 +53,7 @@ const Header = () => {
         >
           Sign Up
         </Link>
-        </>) : (
-          <button onClick={handleLogout} className="">
-            Log Out
-          </button>
+        </>
         )}
       </div>
     </header>

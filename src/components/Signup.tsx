@@ -1,11 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { useRouter } from 'next/navigation';
 import { FiUser, FiArrowRight, FiMail, FiLock} from 'react-icons/fi';
 import { FaGoogle, FaLinkedin } from "react-icons/fa"
 import { HiBuildingOffice2 } from 'react-icons/hi2';
 
 const Signup = () => {
+    const { signup } = useAuth();
+    const router = useRouter();
     const [accountType, setAccountType] = useState('student');
     const [formData, setFormData] = useState({
         fullName: '',
@@ -16,6 +20,7 @@ const Signup = () => {
         password: ''
     });
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState('');
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -28,10 +33,22 @@ const Signup = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
+        setError('');
         try {
-            console.log('Form submitted:', formData);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const userData = {
+                name: formData.fullName,
+                email: formData.email,
+                role: accountType as 'student' | 'company',
+                ...(accountType === 'company' && {
+                    companyName: formData.companyName,
+                    companySize: formData.companySize,
+                    industry: formData.industry,
+                })
+            };
+            await signup(userData);
+            router.push('/dashboard');
         } catch (error) {
+            setError('Signup failed. Please try again.');
             console.error('Signup error:', error);
         } finally {
             setLoading(false);
@@ -55,6 +72,12 @@ const Signup = () => {
                     <h2 className="text-xl font-medium text-center text-white mb-8 opacity-90">
                         Join our platform to connect students with industrial training opportunities
                     </h2>
+
+                    {error && (
+                <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
+                    {error}
+                </div>
+            )}
                     
                     <div className="bg-white/10 p-1 rounded-full flex mb-8 backdrop-blur-sm">
                         <button 

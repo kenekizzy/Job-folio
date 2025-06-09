@@ -1,10 +1,10 @@
 import React from 'react'
-import Recommendations from '@/components/dashboard/Recommendations'
+import SavedCompanies from '@/components/dashboard/SavedCompanies'
 
 const page = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Recommendations />
+      <SavedCompanies />
     </div>
   )
 }

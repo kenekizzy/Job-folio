@@ -8,12 +8,16 @@ interface User {
     email: string;
     role: 'student' | 'company';
     avatar?: string;
+    companyName?: string;
+    companySize?: string;
+    industry?: string;
 }
 
 interface AuthContextType {
     user: User | null;
     loading: boolean;
     login: (email: string, password: string) => Promise<void>;
+    signup: (userData: Omit<User, 'id'>) => Promise<void>;
     logout: () => Promise<void>;
     isAuthenticated: boolean;
 }
@@ -57,6 +61,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
     };
 
+    const signup = async (userData: Omit<User, 'id'>) => {
+        try {
+            // In a real app, this would be an API call
+            const newUser = {
+                ...userData,
+                id: Math.random().toString(36).substr(2, 9),
+            };
+            setUser(newUser);
+            localStorage.setItem('user', JSON.stringify(newUser));
+        } catch (error) {
+            console.error('Signup failed:', error);
+            throw error;
+        }
+    };
+
     const logout = async () => {
         try {
             setUser(null);
@@ -72,6 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             user,
             loading,
             login,
+            signup,
             logout,
             isAuthenticated: !!user
         }}>
