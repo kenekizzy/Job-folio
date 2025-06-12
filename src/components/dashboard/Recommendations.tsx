@@ -20,7 +20,7 @@ interface Job {
 const Recommendations = () => {
     const router = useRouter();
     const { user } = useAuth();
-    const [isProfileComplete, setIsProfileComplete] = useState(true);
+    const [isProfileComplete, setIsProfileComplete] = useState(false);
     const [showRecommendations, setShowRecommendations] = useState(false);
     const [jobs] = useState<Job[]>([
         {
@@ -41,7 +41,7 @@ const Recommendations = () => {
         // Check if user profile is complete (this is a mock check, adjust based on your actual profile requirements)
         const checkProfileCompletion = () => {
             // const profileData = localStorage.getItem('profileData');
-            setIsProfileComplete(true);
+             setIsProfileComplete(true);
         };
 
         checkProfileCompletion();

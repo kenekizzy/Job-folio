@@ -7,7 +7,7 @@ export default function Home() {
   const jobs = [
     {
       state: "Lagos",
-      city: "Oshodi",
+      city: ["Oshodi"],
       course: "Electrical/Electronics & Telecommunications Engineering",
       companyName: "Nigerian Electricity Management Services Agency",
       address: "Along Agege Motor Road, Alasia Bus Stop, Before Bolade Bus Stop",
@@ -15,7 +15,7 @@ export default function Home() {
     },
     {
       state: "Lagos",
-      city: "Marina",
+      city: ["Marina"],
       course: "Electrical/Electronics & Telecommunications Engineering",
       companyName: "Nigerian Port Authority (NPA)",
       address: "26/28 Marina, Lagos, Nigeria",

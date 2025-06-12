@@ -5,7 +5,7 @@ interface JobCardProps {
     address: string;
     companyName: string;
     course: string;
-    city: string[];
+    city?: string[];
     state: string;
     courseGroup: string;
     salary?: string; // New optional field
