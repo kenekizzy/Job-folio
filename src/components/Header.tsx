@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import { useEffect } from "react";
+// import { ThemeToggle } from "@/components/ThemeToggle";
 const Header = () => {
   const { user, logout, isAuthenticated } = useAuth();
 
@@ -25,9 +26,6 @@ const Header = () => {
                 <Link href="/" className="text-green-600 border-b-2 border-green-600">
                     Find Companies
                 </Link>
-                <Link href="/talent" className="hover:text-green-600">
-                    Find Talent
-                </Link>
                 <Link href="/about" className="hover:text-green-600">
                 About Us</Link>
                 {isAuthenticated && (
@@ -36,6 +34,7 @@ const Header = () => {
                     </Link>
                 )}
           </nav>
+          {/* <ThemeToggle /> */}
         <div className="flex items-center space-x-4">
         {isAuthenticated ? (
           <button onClick={handleLogout} className="">
