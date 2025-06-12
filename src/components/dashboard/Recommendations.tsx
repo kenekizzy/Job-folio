@@ -1,21 +1,27 @@
 'use client'
 
-import React, { useState } from 'react';
-import { FiFilter, FiBookmark } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { FiFilter, FiBookmark, FiUserCheck } from 'react-icons/fi';
 
 interface Job {
-    id: number;
-    title: string;
-    company: string;
-    location: string;
-    matchScore: number;
-    salary: string;
-    skills: string[];
-    type: string;
-    postedDate: string;
-  }
+  id: number;
+  title: string;
+  company: string;
+  location: string;
+  matchScore: number;
+  salary: string;
+  skills: string[];
+  type: string;
+  postedDate: string;
+}
 
 const Recommendations = () => {
+    const router = useRouter();
+    const { user } = useAuth();
+    const [isProfileComplete, setIsProfileComplete] = useState(true);
+    const [showRecommendations, setShowRecommendations] = useState(false);
     const [jobs] = useState<Job[]>([
         {
           id: 1,
@@ -30,14 +36,47 @@ const Recommendations = () => {
         },
         // Add more mock jobs here
       ]);
+
+      useEffect(() => {
+        // Check if user profile is complete (this is a mock check, adjust based on your actual profile requirements)
+        const checkProfileCompletion = () => {
+            // const profileData = localStorage.getItem('profileData');
+            setIsProfileComplete(true);
+        };
+
+        checkProfileCompletion();
+    }, []);
     
       const [filters, setFilters] = useState({
         location: '',
         jobType: '',
         skillLevel: ''
       });
+
+      if (!isProfileComplete) {
+        return (
+            <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto text-center">
+                    <div className="bg-white rounded-xl shadow-lg p-8">
+                        <FiUserCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
+                        <h2 className="text-2xl font-bold text-gray-900 mb-4">Complete Your Profile First</h2>
+                        <p className="text-gray-600 mb-6">To provide you with the most relevant job recommendations, we need to know more about your skills and experience.</p>
+                        <button
+                            onClick={() => router.push('/dashboard/profile')}
+                            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                        >
+                            Complete Profile
+                        </button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+    <>
+    {showRecommendations ? (
+      <>
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         <div className="mb-8">
@@ -55,7 +94,7 @@ const Recommendations = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <select
-              className="block w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="block w-full rounded-lg border border-gray-300 text-gray-600 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
               value={filters.location}
               onChange={(e) => setFilters({ ...filters, location: e.target.value })}
             >
@@ -65,7 +104,7 @@ const Recommendations = () => {
               <option value="hybrid">Hybrid</option>
             </select>
             <select
-              className="block w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="block w-full rounded-lg border border-gray-300 text-gray-600 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
               value={filters.jobType}
               onChange={(e) => setFilters({ ...filters, jobType: e.target.value })}
             >
@@ -75,7 +114,7 @@ const Recommendations = () => {
               <option value="contract">Contract</option>
             </select>
             <select
-              className="block w-full rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="block w-full rounded-lg border border-gray-300 text-gray-600 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
               value={filters.skillLevel}
               onChange={(e) => setFilters({ ...filters, skillLevel: e.target.value })}
             >
@@ -134,6 +173,28 @@ const Recommendations = () => {
         </div>
       </div>
     </div>
+      </>
+    ): (
+      <>
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+              <div className="max-w-7xl mx-auto text-center">
+                  <div className="bg-white rounded-xl shadow-lg p-8">
+                      <h2 className="text-2xl font-bold text-gray-900 mb-4">Ready to See Your Recommendations?</h2>
+                      <p className="text-gray-600 mb-6">We have analyzed your profile and found some great matches for you.</p>
+                      <button
+                          onClick={() => setShowRecommendations(true)}
+                          className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+                      >
+                          View Recommendations
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </>
+    )}
+
+      
+    </>
   )
 }
 
