@@ -19,6 +19,7 @@ interface AuthContextType {
     login: (email: string, password: string) => Promise<void>;
     signup: (userData: Omit<User, 'id'>) => Promise<void>;
     logout: () => Promise<void>;
+    verifyEmail: (token: string) => Promise<void>;
     isAuthenticated: boolean;
 }
 
@@ -45,6 +46,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         checkAuth();
     }, []);
 
+    const verifyEmail = async (token: string) => {
+        try {
+            await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API call
+
+            return Promise.resolve();
+        } catch (error) {
+            console.error('Email verification failed:', error);
+            throw error;
+        }
+    };
+
     const login = async (email: string, password: string) => {
         try {
             const mockUser = {
@@ -69,6 +81,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 id: Math.random().toString(36).substr(2, 9),
             };
             setUser(newUser);
+            // toast.success('Please check your email for verification link');
             localStorage.setItem('user', JSON.stringify(newUser));
         } catch (error) {
             console.error('Signup failed:', error);
@@ -93,6 +106,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             login,
             signup,
             logout,
+            verifyEmail,
             isAuthenticated: !!user
         }}>
             {children}

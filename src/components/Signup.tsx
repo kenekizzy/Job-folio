@@ -46,7 +46,7 @@ const Signup = () => {
                 })
             };
             await signup(userData);
-            router.push('/dashboard');
+            router.push('//verify-email');
         } catch (error) {
             setError('Signup failed. Please try again.');
             console.error('Signup error:', error);
