@@ -43,12 +43,12 @@ const Header = () => {
         ) : (
           <>
           <Link href="/login"
-          className="text-gray-600 hover:text-green-600"
+          className="text-white px-4 py-2 rounded-lg border border-gray-200 bg-green-600 hover:bg-green-700 transition duration-300 ease-in-out"
         >
           Login
         </Link>
         <Link href="/signup"
-          className="text-gray-600 hover:text-green-600"
+          className="text-white px-4 py-2 rounded-lg border border-gray-200 bg-green-600 hover:bg-green-700 transition duration-300 ease-in-out"
         >
           Sign Up
         </Link>

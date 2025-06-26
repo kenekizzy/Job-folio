@@ -57,7 +57,7 @@ const Signup = () => {
 
     return (
         <div className="flex min-h-screen p-6" style={{
-            backgroundImage: "url('/assets/image/background.jpg')",
+            backgroundImage: "url('/assets/image/background-image.jpg')",
             backgroundSize: "cover",
             backgroundPosition: "center",
         }}>

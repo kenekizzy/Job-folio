@@ -28,7 +28,7 @@ const Footer = () => {
           </div>
 
           {/* For Job Seekers */}
-          <div>
+          {/* <div>
             <h4 className="font-semibold text-gray-900 mb-4">For Job Seekers</h4>
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Browse Jobs</a></li>
@@ -36,7 +36,7 @@ const Footer = () => {
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Job Alerts</a></li>
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Career Advice</a></li>
             </ul>
-          </div>
+          </div> */}
 
           {/* For Employers */}
           <div>
@@ -44,7 +44,7 @@ const Footer = () => {
             <ul className="space-y-2">
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Post a Job</a></li>
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Browse Candidates</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Pricing Plans</a></li>
+              {/* <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Pricing Plans</a></li> */}
               <li><a href="#" className="text-gray-600 hover:text-blue-600 text-sm">Recruitment Solutions</a></li>
             </ul>
           </div>

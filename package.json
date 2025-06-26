@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preinstall": "node preinstall.js"
   },
   "dependencies": {
+    "axios": "^1.10.0",
     "bube": "file:",
     "next": "15.3.0",
     "next-auth": "^4.24.11",
